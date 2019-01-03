@@ -50,5 +50,24 @@ namespace XOProject.Repository.Exchange
 
             return list;
         }
+
+        public Dictionary<DateTime, List<HourlyShareRate>> MonthAllShares(string shareSymbol, List<DateTime> daysInMonth)
+        {
+            Dictionary<DateTime, List<HourlyShareRate>> dailySharesInMonth = new Dictionary<DateTime, List<HourlyShareRate>>();
+            
+            foreach (var dateTime in daysInMonth)
+            {
+                var dayValue = DbContext.Shares
+                    .Where(e => e.Symbol == shareSymbol &&
+                                e.TimeStamp.Day == dateTime.Day &&
+                                e.TimeStamp.Month == dateTime.Month &&
+                                e.TimeStamp.Year == dateTime.Year)
+                    .OrderBy(e => e.TimeStamp)
+                    .ToList();
+                dailySharesInMonth.Add(dateTime, dayValue);
+            }
+
+            return dailySharesInMonth;
+        }
     }
 }

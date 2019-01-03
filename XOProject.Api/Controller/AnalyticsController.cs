@@ -36,11 +36,10 @@ namespace XOProject.Api.Controller
 
             if (year == 0 || month == 0 || day == 0)
             {
-                return BadRequest("Incorrect Route Values");
+                return BadRequest("Incorrect Route Values for date");
             }
 
-            var yearAsString = year.ToString();
-            if (yearAsString.Length > 4)
+            if (year < 1000)
             {
                 return BadRequest("The year value is less");
             }
@@ -91,10 +90,8 @@ namespace XOProject.Api.Controller
             {
                 return BadRequest("Symbol is more than 3 characters");
             }
-
-          
-            var yearAsString = year.ToString();
-            if (yearAsString.Length > 4)
+            
+            if (year < 1000)
             {
                 return BadRequest("The year value is less");
             }
@@ -129,12 +126,40 @@ namespace XOProject.Api.Controller
         public async Task<IActionResult> Monthly([FromRoute] string symbol, [FromRoute] int year, [FromRoute] int month)
         {
             // TODO: Add implementation for the monthly summary
+
+            //validate route values
+            if (symbol.Length > 3)
+            {
+                return BadRequest("Symbol is more than 3 characters");
+            }
+
+            if (year < 1000)
+            {
+                return BadRequest("The year value is less");
+            }
+
+            if (!Enumerable.Range(1, 12).Contains(month))
+            {
+                return BadRequest("Incorrect month Value");
+            }
+
+            AnalyticsPrice analyticsPrice = new AnalyticsPrice();
+
+            try
+            {
+                analyticsPrice = await _analyticsService.GetMonthlyAsync(symbol, year, month);
+
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
             var result = new MonthlyModel()
             {
                 Symbol = symbol,
                 Year = year,
                 Month = month,
-                Price = Map(new AnalyticsPrice())
+                Price = Map(analyticsPrice)
             };
 
             return Ok(result);

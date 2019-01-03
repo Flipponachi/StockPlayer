@@ -58,13 +58,7 @@ namespace XOProject.Services.Exchange
             return analyticsPrice;
         }
 
-        public static DateTime[] WeekDays(int Year, int WeekNumber)
-        {
-            DateTime startDate = new DateTime(Year, 1, 1).AddDays(7 * WeekNumber);
-            startDate = startDate.AddDays(-((int)startDate.DayOfWeek));
-            return Enumerable.Range(0, 7).Select(num => startDate.AddDays(num)).ToArray();
-        }
-
+       
         public async Task<AnalyticsPrice> GetWeeklyAsync(string symbol, int year, int week)
         {
             // TODO: Add implementation for the weekly summary
@@ -78,16 +72,48 @@ namespace XOProject.Services.Exchange
             var dayValues = WeekDays(year, week);
             var weekValues = _shareRepository.WeekAllShares(symbol, dayValues);
 
+            AnalyticsPrice analyticsPrice = GetSharesDailyValues(weekValues);
+            return analyticsPrice;
+        }
+
+        public async Task<AnalyticsPrice> GetMonthlyAsync(string symbol, int year, int month)
+        {
+            // TODO: Add implementation for the monthly summary
+            //Check if symbol exists first
+            var symbolExists = await _shareRepository.ShareSymbolExists(symbol);
+
+            if (!symbolExists)
+            {
+                throw new Exception("Share Symbol doesn't exist");
+            }
+
+            //Get all the days in the month
+            var days = DaysInMonth(year, month);
+            var sharePrices = _shareRepository.MonthAllShares(symbol, days);
+
+            if (sharePrices.Values.Count != 0)
+            {
+                AnalyticsPrice dayAnalyticsPrice = GetSharesDailyValues(sharePrices);
+
+                return dayAnalyticsPrice;
+            }
+           
+            var defaultPrice = new AnalyticsPrice();
+            return defaultPrice;
+        }
+
+        private static AnalyticsPrice GetSharesDailyValues(Dictionary<DateTime, List<HourlyShareRate>> weekValues)
+        {
             List<decimal> valuesPrice = new List<decimal>();
 
-           //Get week's share price
+            //Get week's share price
             foreach (var dateValue in weekValues.Values)
             {
                 foreach (var hourlyShareRate in dateValue)
                 {
-                   valuesPrice.Add(hourlyShareRate.Rate);
+                    valuesPrice.Add(hourlyShareRate.Rate);
                 }
-                
+
             }
 
             var analyticsPrice = new AnalyticsPrice();
@@ -98,13 +124,23 @@ namespace XOProject.Services.Exchange
                 analyticsPrice.Low = valuesPrice.Min();
                 analyticsPrice.Close = valuesPrice[valuesPrice.Count - 1];
             }
+
             return analyticsPrice;
         }
 
-        public async Task<AnalyticsPrice> GetMonthlyAsync(string symbol, int year, int month)
+        public static DateTime[] WeekDays(int Year, int WeekNumber)
         {
-            // TODO: Add implementation for the monthly summary
-            throw new NotImplementedException();
+            DateTime startDate = new DateTime(Year, 1, 1).AddDays(7 * WeekNumber);
+            startDate = startDate.AddDays(-((int)startDate.DayOfWeek));
+            return Enumerable.Range(0, 7).Select(num => startDate.AddDays(num)).ToArray();
         }
+
+        public static List<DateTime> DaysInMonth(int year, int month)
+        {
+            return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
+                .Select(day => new DateTime(year, month, day))
+                .ToList();
+        }
+
     }
 }

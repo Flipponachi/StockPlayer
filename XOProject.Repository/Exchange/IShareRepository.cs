@@ -10,5 +10,6 @@ namespace XOProject.Repository.Exchange
         Task<bool> ShareSymbolExists(string shareSymbol);
         Task<List<HourlyShareRate>> TodayAllShares(string shareSymbol, DateTime timeOfDay);
         Dictionary<DateTime, List<HourlyShareRate>> WeekAllShares(string shareSymbol, DateTime[] weekDays);
+        Dictionary<DateTime, List<HourlyShareRate>> MonthAllShares(string shareSymbol, List<DateTime> weekDays);
     }
 }
