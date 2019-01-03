@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 using XOProject.Api.Model.Analytics;
@@ -25,11 +27,55 @@ namespace XOProject.Api.Controller
         public async Task<IActionResult> Daily([FromRoute] string symbol, [FromRoute] int year, [FromRoute] int month, [FromRoute] int day)
         {
             // TODO: Add implementation for the daily summary
+
+            //validate route values
+            if (symbol.Length > 3)
+            {
+                return BadRequest("Symbol is more than 3 characters");
+            }
+
+            if (year == 0 || month == 0 || day == 0)
+            {
+                return BadRequest("Incorrect Route Values");
+            }
+
+            var yearAsString = year.ToString();
+            if (yearAsString.Length > 4)
+            {
+                return BadRequest("The year value is less");
+            }
+
+            if (!Enumerable.Range(1, 12).Contains(month))
+            {
+                return BadRequest("The month value doesn't exist");
+            }
+
+            if (!Enumerable.Range(1, 31).Contains(day))
+            {
+                return BadRequest("The day value doesn't exist");
+            }
+
+
+            //Parse from route values Datetime object
+            var queryTime = new DateTime(year, month, day);
+
+            AnalyticsPrice todaysAnalyticsPrice = new AnalyticsPrice();
+            //Set validation for route values
+            try
+            {
+                todaysAnalyticsPrice = await _analyticsService.GetDailyAsync(symbol, queryTime);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+
+           
             var result = new DailyModel()
             {
                 Symbol = symbol,
-                Day = new DateTime(),
-                Price = Map(new AnalyticsPrice())
+                Day = queryTime,
+                Price = Map(todaysAnalyticsPrice)
             };
 
             return Ok(result);
