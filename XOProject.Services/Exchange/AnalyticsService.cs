@@ -31,36 +31,74 @@ namespace XOProject.Services.Exchange
             }
 
             //Load all prices for the share at that time
-            var allShares = await _shareRepository.AllShares(symbol, day);
+            var allShares = await _shareRepository.TodayAllShares(symbol, day);
 
-            var apsa = new AnalyticsPrice();
+            var analyticsPrice = new AnalyticsPrice();
 
             //First and Last index contains Open and Closing price
             if (allShares.Count != 0)
             {
-                apsa.Open = allShares[0].Rate;
-                apsa.Close = allShares[allShares.Count - 1].Rate;
+                analyticsPrice.Open = allShares[0].Rate;
+                analyticsPrice.Close = allShares[allShares.Count - 1].Rate;
+
+                //Calculate High and Low price
+                List<decimal> valuesPrice = new List<decimal>();
+
+                foreach (var rate in allShares)
+                {
+                    valuesPrice.Add(rate.Rate);
+                }
+
+                analyticsPrice.High = valuesPrice.Max();
+                analyticsPrice.Low = valuesPrice.Min();
             }
 
-            //Calculate High and Low price
-            List<decimal> valuesPrice = new List<decimal>();
-
-            foreach (var rate in allShares)
-            {
-                valuesPrice.Add(rate.Rate);
-            }
-
-            apsa.High = valuesPrice.Max();
-            apsa.Low = valuesPrice.Min();
 
 
-            return apsa;
+            return analyticsPrice;
+        }
+
+        public static DateTime[] WeekDays(int Year, int WeekNumber)
+        {
+            DateTime startDate = new DateTime(Year, 1, 1).AddDays(7 * WeekNumber);
+            startDate = startDate.AddDays(-((int)startDate.DayOfWeek));
+            return Enumerable.Range(0, 7).Select(num => startDate.AddDays(num)).ToArray();
         }
 
         public async Task<AnalyticsPrice> GetWeeklyAsync(string symbol, int year, int week)
         {
             // TODO: Add implementation for the weekly summary
-            throw new NotImplementedException();
+            var symbolExists = await _shareRepository.ShareSymbolExists(symbol);
+
+            if (!symbolExists)
+            {
+                throw new Exception("Share Symbol doesn't exist");
+            }
+
+            var dayValues = WeekDays(year, week);
+            var weekValues = _shareRepository.WeekAllShares(symbol, dayValues);
+
+            List<decimal> valuesPrice = new List<decimal>();
+
+           //Get week's share price
+            foreach (var dateValue in weekValues.Values)
+            {
+                foreach (var hourlyShareRate in dateValue)
+                {
+                   valuesPrice.Add(hourlyShareRate.Rate);
+                }
+                
+            }
+
+            var analyticsPrice = new AnalyticsPrice();
+            if (valuesPrice.Count != 0)
+            {
+                analyticsPrice.Open = valuesPrice[0];
+                analyticsPrice.High = valuesPrice.Max();
+                analyticsPrice.Low = valuesPrice.Min();
+                analyticsPrice.Close = valuesPrice[valuesPrice.Count - 1];
+            }
+            return analyticsPrice;
         }
 
         public async Task<AnalyticsPrice> GetMonthlyAsync(string symbol, int year, int month)

@@ -21,7 +21,7 @@ namespace XOProject.Repository.Exchange
             return await DbContext.Shares.AnyAsync(e => e.Symbol == shareSymbol);
         }
 
-        public async Task<List<HourlyShareRate>> AllShares(string shareSymbol, DateTime timeOfDay)
+        public async Task<List<HourlyShareRate>> TodayAllShares(string shareSymbol, DateTime timeOfDay)
         {
             return await DbContext.Shares
                 .Where(e => e.Symbol == shareSymbol && 
@@ -30,6 +30,25 @@ namespace XOProject.Repository.Exchange
                             e.TimeStamp.Year == timeOfDay.Year)
                 .OrderBy(e => e.TimeStamp)
                 .ToListAsync();
+        }
+
+        public Dictionary<DateTime, List<HourlyShareRate>> WeekAllShares(string shareSymbol, DateTime[] weekDays)
+        {
+            Dictionary<DateTime, List<HourlyShareRate>> list = new Dictionary<DateTime, List<HourlyShareRate>>();
+
+            foreach (var dateTime in weekDays)
+            {
+                var dayValue = DbContext.Shares
+                    .Where(e => e.Symbol == shareSymbol &&
+                                e.TimeStamp.Day == dateTime.Day &&
+                                e.TimeStamp.Month == dateTime.Month &&
+                                e.TimeStamp.Year == dateTime.Year)
+                    .OrderBy(e => e.TimeStamp)
+                    .ToList();
+                list.Add(dateTime, dayValue);
+            }
+
+            return list;
         }
     }
 }

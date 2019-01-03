@@ -85,12 +85,41 @@ namespace XOProject.Api.Controller
         public async Task<IActionResult> Weekly([FromRoute] string symbol, [FromRoute] int year, [FromRoute] int week)
         {
             // TODO: Add implementation for the weekly summary
+
+            //validate route values
+            if (symbol.Length > 3)
+            {
+                return BadRequest("Symbol is more than 3 characters");
+            }
+
+          
+            var yearAsString = year.ToString();
+            if (yearAsString.Length > 4)
+            {
+                return BadRequest("The year value is less");
+            }
+
+            if (!Enumerable.Range(1, 52).Contains(week))
+            {
+                return BadRequest("Incorrect Week Value");
+            }
+
+            AnalyticsPrice weekAnalyticPrice = new AnalyticsPrice();
+            try
+            {
+                weekAnalyticPrice = await _analyticsService.GetWeeklyAsync(symbol, year, week);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
             var result = new WeeklyModel()
             {
                 Symbol = symbol,
                 Year = year,
                 Week = week,
-                Price = Map(new AnalyticsPrice())
+                Price = Map(weekAnalyticPrice)
             };
 
             return Ok(result);
