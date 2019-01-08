@@ -15,4 +15,5 @@ dotnet test ../XOProject.Services.Tests/XOProject.Services.Tests.csproj --no-bui
 dotnet minicover uninstrument --workdir ../../
 dotnet minicover report --workdir ../../ --threshold 60
 
+
 cd ../../

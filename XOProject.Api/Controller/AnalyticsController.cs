@@ -29,9 +29,9 @@ namespace XOProject.Api.Controller
             // TODO: Add implementation for the daily summary
 
             //validate route values
-            if (symbol.Length > 3)
+            if (symbol.Length > 3 ||symbol.Length < 3)
             {
-                return BadRequest("Symbol is more than 3 characters");
+                return BadRequest("Symbol characters exceeded or below");
             }
 
             if (year == 0 || month == 0 || day == 0)
@@ -86,11 +86,11 @@ namespace XOProject.Api.Controller
             // TODO: Add implementation for the weekly summary
 
             //validate route values
-            if (symbol.Length > 3)
+            if (symbol.Length > 3 || symbol.Length < 3)
             {
-                return BadRequest("Symbol is more than 3 characters");
+                return BadRequest("Symbol characters exceeded or below");
             }
-            
+
             if (year < 1000)
             {
                 return BadRequest("The year value is less");
@@ -109,7 +109,7 @@ namespace XOProject.Api.Controller
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return NotFound(e.Message);
             }
             var result = new WeeklyModel()
             {
@@ -128,9 +128,9 @@ namespace XOProject.Api.Controller
             // TODO: Add implementation for the monthly summary
 
             //validate route values
-            if (symbol.Length > 3)
+            if (symbol.Length > 3 || symbol.Length < 3)
             {
-                return BadRequest("Symbol is more than 3 characters");
+                return BadRequest("Symbol characters exceeded or below");
             }
 
             if (year < 1000)

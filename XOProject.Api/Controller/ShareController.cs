@@ -47,6 +47,12 @@ namespace XOProject.Api.Controller
         public async Task<IActionResult> GetLatestPrice([FromRoute]string symbol)
         {
             var item = await _shareService.GetLastPriceAsync(symbol);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+            
             return Ok(item.Rate);
         }
 
