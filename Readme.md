@@ -1,8 +1,8 @@
-Project Assessment:
+### Project Assessment:
     Cross Exchange is an arbitrarily trading game developed by a startup in a very short period called "Super Traders". 
     The purpose of the application is to educate users on the terminology used in the trading of shares.
 
-Notes:
+### Notes:
     - The project registers share and allows admins to add the new price of the share on an hourly basis and update last price value at any time.
     - The share registered should have unique Symbol to identify it and should be all capital letters with three characters.
     - The trade action can be BUY or SELL uppercase.
