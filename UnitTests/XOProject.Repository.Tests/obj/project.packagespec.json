@@ -1,0 +1,89 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\OWNER\\Documents\\Projects\\cross-exchange\\StockPlayer\\UnitTests\\XOProject.Repository.Tests\\XOProject.Repository.Tests.csproj",
+    "projectName": "XOProject.Repository.Tests",
+    "projectPath": "C:\\Users\\OWNER\\Documents\\Projects\\cross-exchange\\StockPlayer\\UnitTests\\XOProject.Repository.Tests\\XOProject.Repository.Tests.csproj",
+    "outputPath": "C:\\Users\\OWNER\\Documents\\Projects\\cross-exchange\\StockPlayer\\UnitTests\\XOProject.Repository.Tests\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {
+          "C:\\Users\\OWNER\\Documents\\Projects\\cross-exchange\\StockPlayer\\XOProject.Repository\\XOProject.Repository.csproj": {
+            "projectPath": "C:\\Users\\OWNER\\Documents\\Projects\\cross-exchange\\StockPlayer\\XOProject.Repository\\XOProject.Repository.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.EntityFrameworkCore": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.Analyzers": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.Design": {
+          "target": "Package",
+          "version": "[2.1.0, )"
+        },
+        "Microsoft.EntityFrameworkCore.InMemory": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.SqlServer": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Microsoft.NET.Test.Sdk": {
+          "target": "Package",
+          "version": "[15.9.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.0, )",
+          "autoReferenced": true
+        },
+        "Moq": {
+          "target": "Package",
+          "version": "[4.10.0, )"
+        },
+        "NUnit": {
+          "target": "Package",
+          "version": "[3.11.0, )"
+        },
+        "NUnit3TestAdapter": {
+          "target": "Package",
+          "version": "[3.11.2, )"
+        },
+        "coverlet.msbuild": {
+          "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.6.0, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

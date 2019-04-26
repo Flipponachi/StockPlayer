@@ -22,3 +22,15 @@ C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Service
 C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.csproj.CopyComplete
 C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.dll
 C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.pdb
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\bin\Debug\netcoreapp2.0\XOProject.Services.deps.json
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\bin\Debug\netcoreapp2.0\XOProject.Services.dll
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\bin\Debug\netcoreapp2.0\XOProject.Services.pdb
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\bin\Debug\netcoreapp2.0\XOProject.Repository.dll
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\bin\Debug\netcoreapp2.0\XOProject.Repository.pdb
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.csprojAssemblyReference.cache
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.csproj.CoreCompileInputs.cache
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.AssemblyInfoInputs.cache
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.AssemblyInfo.cs
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.csproj.CopyComplete
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.dll
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Services\obj\Debug\netcoreapp2.0\XOProject.Services.pdb

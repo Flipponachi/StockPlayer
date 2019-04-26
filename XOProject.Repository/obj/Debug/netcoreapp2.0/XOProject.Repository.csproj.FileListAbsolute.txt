@@ -19,3 +19,14 @@ C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Reposit
 C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.AssemblyInfo.cs
 C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.dll
 C:\Users\OWNER\Documents\Projects\cross-exchange\CrossExchange\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.pdb
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\bin\Debug\netcoreapp2.0\XOProject.Repository.deps.json
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\bin\Debug\netcoreapp2.0\XOProject.Repository.runtimeconfig.json
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\bin\Debug\netcoreapp2.0\XOProject.Repository.runtimeconfig.dev.json
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\bin\Debug\netcoreapp2.0\XOProject.Repository.dll
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\bin\Debug\netcoreapp2.0\XOProject.Repository.pdb
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.csprojAssemblyReference.cache
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.csproj.CoreCompileInputs.cache
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.AssemblyInfoInputs.cache
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.AssemblyInfo.cs
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.dll
+C:\Users\OWNER\Documents\Projects\cross-exchange\StockPlayer\XOProject.Repository\obj\Debug\netcoreapp2.0\XOProject.Repository.pdb
