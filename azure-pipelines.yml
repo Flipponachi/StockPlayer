@@ -13,6 +13,7 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 - task: DotNetCoreCLI@2
   inputs:
+    displayName: 'running unit tests'
     command: test
-    projects: 'UnitTests/XOProject.Api.Tests/*.csproj'
+    projects: 'UnitTests/*.Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
